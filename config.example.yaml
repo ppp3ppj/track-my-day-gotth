@@ -1,0 +1,14 @@
+appinfo:
+  name: track-my-day-gotth
+  version: 0.0.1
+  environtment: development
+  secretkey: "secretkey"
+
+server:
+  port: 4000
+  allowOrigins:
+    - "*"
+  timeout: 30
+
+database:
+  name: track_my_day_gotth.db
