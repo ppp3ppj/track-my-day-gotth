@@ -6,3 +6,4 @@ config.yaml
 *.db-shm
 *.db-wal
 *.sqlite
+*.sqlite3
