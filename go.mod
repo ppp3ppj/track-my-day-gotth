@@ -4,6 +4,8 @@ go 1.23.2
 
 require (
 	github.com/go-playground/validator/v10 v10.22.1
+	github.com/jmoiron/sqlx v1.4.0
+	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/spf13/viper v1.19.0
 )
 
