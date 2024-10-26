@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"strings"
 	"sync"
 	"time"
@@ -24,7 +25,11 @@ type (
 		Timeout      time.Duration `mapstructure:"timeout" validate:"required"`
 	}
 	Database struct {
-		Name string `mapstructure:"name" validate:"required"`
+		TestDBPath    string `mapstructure:"test_db_path" validate:"required"`
+		ProdDBPath    string `mapstructure:"prod_db_path" validate:"required"`
+		DevDBPath     string `mapstructure:"dev_db_path" validate:"required"`
+		CurrentDBPath string `mapstructure:"-"` // Used to store the active database path based on environment
+
 	}
 	Config struct {
 		Server   *Server   `mapstructure:"server" validate:"required"`
@@ -47,19 +52,33 @@ func loadConfig() (*Config, error) {
 		viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 		if err := viper.ReadInConfig(); err != nil {
-			configError = err
+			configError = fmt.Errorf("error reading config file: %w", err)
 			return
 		}
 
+		// Unmarshal config into configInstance
 		if err := viper.Unmarshal(&configInstance); err != nil {
-			configError = err
+			configError = fmt.Errorf("unable to decode into struct: %w", err)
 			return
 		}
 
+		// Validate config values
 		validate := validator.New()
-
 		if err := validate.Struct(configInstance); err != nil {
 			configError = err
+			return
+		}
+
+		// Set CurrentDBPath based on environment
+		switch configInstance.AppInfo.Env {
+		case "production":
+			configInstance.Database.CurrentDBPath = configInstance.Database.ProdDBPath
+		case "test":
+			configInstance.Database.CurrentDBPath = configInstance.Database.TestDBPath
+		case "development":
+			configInstance.Database.CurrentDBPath = configInstance.Database.DevDBPath
+		default:
+			configError = fmt.Errorf("invalid environment: %s", configInstance.AppInfo.Env)
 		}
 	})
 

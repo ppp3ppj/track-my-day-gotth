@@ -11,4 +11,5 @@ func main() {
     fmt.Printf("%+v\n", cfg.AppInfo)
     fmt.Printf("%+v\n", cfg.Server)
     fmt.Printf("%+v\n", cfg.Database)
+    fmt.Printf("%+v\n", cfg.Database.CurrentDBPath)
 }
