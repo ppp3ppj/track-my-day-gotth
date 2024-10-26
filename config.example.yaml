@@ -11,6 +11,6 @@ server:
   timeout: 30
 
 database:
-  prod_db_path: "production.sqlite3"  # Production database path
-  test_db_path: "test.sqlite3"             # Test database path
-  dev_db_path: "development.sqlite3"            #Development database path
+  prod_db_path: "production.sqlite"  # Production database path
+  test_db_path: "test.sqlite"             # Test database path
+  dev_db_path: "development.sqlite"            #Development database path
