@@ -1,2 +1,8 @@
 # Config env
 config.yaml
+
+# Sqlite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
