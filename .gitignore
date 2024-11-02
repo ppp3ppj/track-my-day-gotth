@@ -7,3 +7,6 @@ config.yaml
 *.db-wal
 *.sqlite
 *.sqlite3
+
+# Air hot-reload
+!.air.example.toml
