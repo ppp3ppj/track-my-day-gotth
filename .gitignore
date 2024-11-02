@@ -10,3 +10,8 @@ config.yaml
 
 # Air hot-reload
 !.air.example.toml
+#ignore dev air file
+.air.dev.toml
+
+# temp
+tmp
