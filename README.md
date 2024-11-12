@@ -5,6 +5,21 @@ A simple, modern stack for building fast web applications.
 -   Templ - Templating
 -   HTMX - Interactivity
 
+# Install
+`
+go install -tags 'sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+`
+
+# Command Example
+# Create a new migration in the development environment
+make migrate-create name=create_users_table ENV=development
+
+# Apply migrations in the test environment
+make migrate-up ENV=test
+
+# Roll back the latest migration in production
+make migrate-down ENV=production
+
 ## Resources
 [GoTTH](https://github.com/TomDoesTech/GOTTH/tree/main) - A simple, modern stack for building fast web applications.
 
