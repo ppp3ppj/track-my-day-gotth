@@ -1,6 +1,6 @@
 module github.com/ppp3ppj/track-my-day-gotth
 
-go 1.23.2
+go 1.23.3
 
 require (
 	github.com/go-playground/validator/v10 v10.22.1
